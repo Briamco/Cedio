@@ -56,6 +56,8 @@ class GeneratorServices
       StyleConsole.WriteLine($"💡 Idea loca generada:", ConsoleColor.Cyan);
       StyleConsole.WriteLine(idea, ConsoleColor.Green);
 
+
+      FraseService.MostrarFraseAleatoria();
       StyleConsole.Write("\n¿Deseas guardar esta idea? (s = sí / cualquier otra tecla = no / x = salir): ");
       string input = Console.ReadLine()?.Trim().ToLower() ?? "";
 
