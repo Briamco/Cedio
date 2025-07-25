@@ -1,3 +1,4 @@
+using System.Media;
 using Data;
 using Utils;
 
@@ -29,12 +30,14 @@ class GeneratorServices
 
     do
     {
-      StyleConsole.Write("Problema: ");
-      idea = AnimationHelper.LoopAnimation(promblem, TextHelper.CapitalText(promblem[random.Next(promblem.Length)]));
-      StyleConsole.Write("Tecnologia: ");
-      idea += $" {AnimationHelper.LoopAnimation(techno, techno[random.Next(techno.Length)])}";
-      StyleConsole.Write("Contra: ");
-      idea += $" {AnimationHelper.LoopAnimation(contra, contra[random.Next(contra.Length)])}";
+      Sound.StopSound();
+      Sound.TamboreSound();
+      StyleConsole.WriteLine("Problema: ", ConsoleColor.Green);
+      idea = AnimationHelper.LoopAnimation(promblem, TextHelper.CapitalText(promblem[random.Next(promblem.Length)]), 1.4, false);
+      StyleConsole.WriteLine("Tecnologia: ", ConsoleColor.Green);
+      idea += $" {AnimationHelper.LoopAnimation(techno, techno[random.Next(techno.Length)], 1.4, false, true)}";
+      StyleConsole.WriteLine("Contra: ", ConsoleColor.Green);
+      idea += $" {AnimationHelper.LoopAnimation(contra, contra[random.Next(contra.Length)], 1.4, false, true)}";
     } while (PastConvination(idea));
 
     return idea;
@@ -55,12 +58,13 @@ class GeneratorServices
       }
 
       Console.Clear();
+      Sound.StopSound();
+      Sound.SucessSound();
       StyleConsole.Title("IDEA");
       StyleConsole.WriteLine($"💡 Idea loca generada:", ConsoleColor.Cyan);
       StyleConsole.WriteLine(idea, ConsoleColor.Green);
 
-      StyleConsole.Write("\n¿Deseas guardar esta idea? (s = sí / cualquier otra tecla = no / x = salir): ");
-      string input = Console.ReadLine()?.Trim().ToLower() ?? "";
+      string input = InputHelper.ReadString("\n¿Deseas guardar esta idea? (s = sí / cualquier otra tecla = no / x = salir)", false, true).Trim().ToLower() ?? "";
 
       if (input == "s")
       {

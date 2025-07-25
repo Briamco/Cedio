@@ -1,6 +1,0 @@
-namespace Services;
-
-class TodoService
-{
-
-}

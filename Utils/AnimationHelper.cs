@@ -14,7 +14,6 @@ class AnimationHelper
 
       if (Console.KeyAvailable && InputHelper.ReadKey(ConsoleKey.Spacebar))
       {
-        Sound.StopSound();
         break;
       }
     }
@@ -33,12 +32,11 @@ class AnimationHelper
 
       if (Console.KeyAvailable && InputHelper.ReadKey(ConsoleKey.Spacebar))
       {
-        Sound.StopSound();
         break;
       }
     }
   }
-  public static string LoopAnimation(string[] arr, string selected, double duration = 5, bool capital = false, ConsoleColor endColor = ConsoleColor.Green)
+  public static string LoopAnimation(string[] arr, string selected, double duration = 5, bool wait = true, bool capital = false, ConsoleColor endColor = ConsoleColor.Green)
   {
     bool skip = false;
 
@@ -63,17 +61,20 @@ class AnimationHelper
       counter++;
       Thread.Sleep(delay);
 
-      if (Console.KeyAvailable && InputHelper.ReadKey(ConsoleKey.Spacebar))
+      if (Console.KeyAvailable && InputHelper.ReadKey(ConsoleKey.Spacebar, false))
       {
-        Sound.StopSound();
         skip = true;
         break;
       }
     }
 
     string resultadoFinal = selected.PadRight(maxLength);
-    StyleConsole.Write($"\r{resultadoFinal}\n", endColor);
-    if (!skip) Thread.Sleep(1000 * 2);
+    if (capital) StyleConsole.Write($"\r{TextHelper.CapitalText(resultadoFinal)}\n", endColor);
+    else StyleConsole.Write($"\r{resultadoFinal}\n", endColor);
+    if (wait)
+    {
+      if (!skip) Thread.Sleep(1000 * 2);
+    }
 
     return selected;
   }
