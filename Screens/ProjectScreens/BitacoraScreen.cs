@@ -10,7 +10,7 @@ class BitacoraScreen
   private static void AddBitacora()
   {
     StyleConsole.Title($"BITACORA {DateTime.Now}");
-    string bit = InputHelper.ReadString("Escribe tu bitacora", true);
+    string bit = InputHelper.ReadString("Escribe tu bitacora, [Enter] para finalizar registro", true);
 
     bitacora = ProjectData.AddBitacora(bit);
   }
@@ -33,7 +33,7 @@ class BitacoraScreen
       do
       {
         op = InputHelper.ReadNum("Ingresa el indice de la bitacora") - 1;
-      } while (op < 0 || op >= bitacora.Length);
+      } while (!ValidationHelper.ValidarIndice(op, bitacora, "Bitacora"));
 
       Console.Clear();
       StyleConsole.Title($"BITACORA {bitacoras[op][0]}");
@@ -56,7 +56,7 @@ class BitacoraScreen
       }
 
       StyleConsole.WriteLine($"\nPágina {currentPage + 1} de {totalPages}", ConsoleColor.Cyan);
-      StyleConsole.WriteLine("Presiona [Spacebar] para siguiente, [Backspace] para anterior, [Enter] para ver bitacora, [Esc] para salir.");
+      StyleConsole.WriteLine("Presiona [Spacebar] para siguiente, [Backspace] para anterior, [Enter]x2 para ver bitacora, [Esc] para salir.");
 
       if (InputHelper.ReadKey(ConsoleKey.Spacebar) && currentPage < totalPages - 1)
       {

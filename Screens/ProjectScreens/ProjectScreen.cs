@@ -29,7 +29,7 @@ class ProjectScreen
       }
 
       StyleConsole.WriteLine($"\nPágina {currentPage + 1} de {totalPages}", ConsoleColor.Cyan);
-      StyleConsole.WriteLine("Presiona [SpaceBar] para siguiente, [Backspace] para anterior, [Enter] para seleccionar Proyecto, [Esc] para salir.");
+      StyleConsole.WriteLine("Presiona [SpaceBar] para siguiente, [Backspace] para anterior, [Enter]x2 para seleccionar Proyecto, [Esc] para salir.");
 
       if (InputHelper.ReadKey(ConsoleKey.Spacebar) && currentPage < totalPages - 1)
       {
@@ -41,8 +41,8 @@ class ProjectScreen
       }
       else if (InputHelper.ReadKey(ConsoleKey.Enter))
       {
-        project = InputHelper.ReadNum("\nIngresa el indice de la bitacora") - 1;
-        if (project < 0 || project > ideas.Length + 1)
+        project = InputHelper.ReadNum("\nIngresa el indice del proyecto") - 1;
+        if (!ValidationHelper.ValidarIndice(project, ideas, "Idea"))
         {
           project = -1;
           continue;
@@ -52,6 +52,20 @@ class ProjectScreen
         break;
       }
       else if (InputHelper.ReadKey(ConsoleKey.Escape)) break;
+    }
+  }
+
+  private static void ShowFrase()
+  {
+    while (true)
+    {
+      Console.Clear();
+      StyleConsole.Title("FRASE TECH");
+      FraseService.MostrarFraseAleatoria();
+
+      StyleConsole.WriteLine("\nPresiona [Spacebar] para generar otra frase, [Enter]x2 para salir.");
+      if (InputHelper.ReadKey(ConsoleKey.Spacebar)) continue;
+      else if (InputHelper.ReadKey(ConsoleKey.Enter)) break;
     }
   }
 
@@ -72,7 +86,7 @@ class ProjectScreen
         InputHelper.Continuar();
         break;
       case 4:
-        //FraseService.MostrarFraseAleatoria();
+        ShowFrase();
         break;
       default:
         StyleConsole.Error("Ninguna opcion es valida, intente nuevamente");
@@ -98,6 +112,7 @@ class ProjectScreen
       {
         ProjectData.Saveproject();
         ProjectData.ProjectsIndex = -1;
+        AnimationHelper.LoadingAnimation("Guardando Proyecto");
         break;
       }
 

@@ -1,6 +1,6 @@
 using Services;
 using Utils;
- 
+
 
 public static class MainScreen
 {
@@ -24,7 +24,7 @@ public static class MainScreen
   public static void Screen(int exitInput)
   {
     Console.Clear();
-    StyleConsole.Title("MENÚ PRINCIPAL");
+    StyleConsole.Title("CEDIO");
     StyleConsole.WriteLine("1. Generar Idea", ConsoleColor.Green);
     StyleConsole.WriteLine("2. Proyectos", ConsoleColor.Green);
     StyleConsole.Error($"{exitInput}. Salir");

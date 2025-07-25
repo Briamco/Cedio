@@ -24,7 +24,6 @@ public class ScreenMain
         {
           if (IdeaData.ideas != new string[0]) IdeaData.Save();
 
-          // AnimationHelper.LoadingAnimation("Guardando datos", 1.5);
           StyleConsole.Title("SALIENDO DEL PROGRAMA", 40);
           StyleConsole.WriteLine("¡Hasta pronto!", ConsoleColor.Green);
           break;
