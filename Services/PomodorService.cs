@@ -35,6 +35,7 @@ class PomodoroService
         int opción = 0;
         do
         {
+          Sound.GreateSound();
           Console.SetCursorPosition(x, y);
           StyleConsole.Error("Quieres tomar un Break 1/S o 2/N: ");
           string menu = Console.ReadLine()!;

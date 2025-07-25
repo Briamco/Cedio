@@ -11,13 +11,14 @@ class InputHelper
     {
       StyleConsole.Write("\nIngresa un numero valido: ");
       input = Console.ReadLine();
+      Sound.PopSound();
     }
     while (!int.TryParse(input, out op));
 
     return op;
   }
 
-  public static string ReadString(string texto, bool lineJump = false, ConsoleColor color = ConsoleColor.Yellow)
+  public static string ReadString(string texto, bool lineJump = false, bool skip = false, ConsoleColor color = ConsoleColor.Yellow)
   {
     string? input;
 
@@ -26,13 +27,19 @@ class InputHelper
       if (lineJump) StyleConsole.WriteLine($"{texto}: ", color);
       else StyleConsole.Write($"{texto}: ", color);
       input = Console.ReadLine();
+      Sound.PopSound();
+      if (skip)
+      {
+        input += "";
+        break;
+      }
     }
     while (input == null || input.Trim() == "");
 
     return input;
   }
 
-  public static int ReadNum(string texto, bool lineJump = false, ConsoleColor color = ConsoleColor.Yellow)
+  public static int ReadNum(string texto, ConsoleColor color = ConsoleColor.Yellow)
   {
     string? input;
     int numero;
@@ -41,6 +48,7 @@ class InputHelper
     {
       StyleConsole.Write($"{texto}: ", color);
       input = Console.ReadLine();
+      Sound.PopSound();
     }
     while (!int.TryParse(input, out numero));
 
@@ -51,10 +59,12 @@ class InputHelper
   {
     StyleConsole.WriteLine(text, ConsoleColor.Cyan);
     Console.ReadKey();
+    Sound.PopSound();
   }
-  public static bool ReadKey(ConsoleKey key)
+  public static bool ReadKey(ConsoleKey key, bool sound = true)
   {
     var keyInfo = Console.ReadKey(intercept: true);
+    if (sound) Sound.PopSound();
     return keyInfo.Key == key;
   }
 }

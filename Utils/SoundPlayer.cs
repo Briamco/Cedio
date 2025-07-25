@@ -42,4 +42,16 @@ class Sound
       StyleConsole.Error($"Error al detener el sonido: {ex.Message}");
     }
   }
+
+  public static void PopSound() =>
+    PlaySound("Media/pop-1.wav");
+
+  public static void SucessSound() =>
+    PlaySound("Media/sucess.WAV");
+
+  public static void GreateSound() =>
+    PlaySound("Media/grate.WAV");
+
+  public static void TamboreSound() =>
+    PlaySound("Media/tambores.WAV");
 }
