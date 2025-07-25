@@ -4,14 +4,12 @@ class AnimationHelper
 {
   public static void LoadingAnimation(string text = "Cargando", double duration = 2)
   {
-    int counter = 0;
     DateTime endTIme = DateTime.Now.AddSeconds(duration);
 
     StyleConsole.Write(text);
     while (DateTime.Now < endTIme)
     {
       StyleConsole.Write(".");
-      counter++;
       Thread.Sleep(100);
 
       if (Console.KeyAvailable && InputHelper.ReadKey(ConsoleKey.Spacebar))

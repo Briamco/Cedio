@@ -29,8 +29,11 @@ class GeneratorServices
 
     do
     {
+      StyleConsole.Write("Problema: ");
       idea = AnimationHelper.LoopAnimation(promblem, TextHelper.CapitalText(promblem[random.Next(promblem.Length)]));
+      StyleConsole.Write("Tecnologia: ");
       idea += $" {AnimationHelper.LoopAnimation(techno, techno[random.Next(techno.Length)])}";
+      StyleConsole.Write("Contra: ");
       idea += $" {AnimationHelper.LoopAnimation(contra, contra[random.Next(contra.Length)])}";
     } while (PastConvination(idea));
 
@@ -56,8 +59,6 @@ class GeneratorServices
       StyleConsole.WriteLine($"💡 Idea loca generada:", ConsoleColor.Cyan);
       StyleConsole.WriteLine(idea, ConsoleColor.Green);
 
-
-      FraseService.MostrarFraseAleatoria();
       StyleConsole.Write("\n¿Deseas guardar esta idea? (s = sí / cualquier otra tecla = no / x = salir): ");
       string input = Console.ReadLine()?.Trim().ToLower() ?? "";
 
@@ -65,15 +66,18 @@ class GeneratorServices
       {
         IdeaData.AddIdea(idea);
         StyleConsole.WriteLine("✅ Idea guardada exitosamente.\n", ConsoleColor.Green);
+        Thread.Sleep(1000);
       }
       else if (input == "x")
       {
         StyleConsole.Error("🚪 Saliendo del generador...");
+        Thread.Sleep(1000);
         return;
       }
       else
       {
         StyleConsole.Error("❌ Idea descartada. Generando otra...\n");
+        Thread.Sleep(1000);
       }
     }
   }

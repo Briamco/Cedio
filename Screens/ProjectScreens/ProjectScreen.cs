@@ -41,8 +41,8 @@ class ProjectScreen
       }
       else if (InputHelper.ReadKey(ConsoleKey.Enter))
       {
-        project = InputHelper.ReadNum("\nIngresa el indice de la bitacora") - 1;
-        if (project < 0 || project > ideas.Length + 1)
+        project = InputHelper.ReadNum("\nIngresa el indice del proyecto") - 1;
+        if (!ValidationHelper.ValidarIndice(project, ideas, "Idea"))
         {
           project = -1;
           continue;
@@ -112,6 +112,7 @@ class ProjectScreen
       {
         ProjectData.Saveproject();
         ProjectData.ProjectsIndex = -1;
+        AnimationHelper.LoadingAnimation("Guardando Proyecto");
         break;
       }
 

@@ -10,7 +10,7 @@ class BitacoraScreen
   private static void AddBitacora()
   {
     StyleConsole.Title($"BITACORA {DateTime.Now}");
-    string bit = InputHelper.ReadString("Escribe tu bitacora", true);
+    string bit = InputHelper.ReadString("Escribe tu bitacora, [Enter] para finalizar registro", true);
 
     bitacora = ProjectData.AddBitacora(bit);
   }
@@ -33,7 +33,7 @@ class BitacoraScreen
       do
       {
         op = InputHelper.ReadNum("Ingresa el indice de la bitacora") - 1;
-      } while (op < 0 || op >= bitacora.Length);
+      } while (!ValidationHelper.ValidarIndice(op, bitacora, "Bitacora"));
 
       Console.Clear();
       StyleConsole.Title($"BITACORA {bitacoras[op][0]}");

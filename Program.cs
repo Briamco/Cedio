@@ -21,15 +21,15 @@ internal class Program
    \( |____|/   \( |_____|/   \(    )/     \(       \(    )/    
     '   )/       '    )/       '    '       '        '    '     
         '             '", ConsoleColor.Blue);
-    InputHelper.Continuar();
-
     if (!OperatingSystem.IsWindows())
     {
       StyleConsole.Error("No se podran reproducir los sonidos en este sistema operativo.");
     }
 
+    InputHelper.Continuar();
+
     IdeaData.Load();
-    AnimationHelper.LoadingAnimation("Cargando");
+    AnimationHelper.LoadingAnimation();
 
     ScreenMain.Screen();
   }
