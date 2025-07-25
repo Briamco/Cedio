@@ -56,7 +56,7 @@ class BitacoraScreen
       }
 
       StyleConsole.WriteLine($"\nPágina {currentPage + 1} de {totalPages}", ConsoleColor.Cyan);
-      StyleConsole.WriteLine("Presiona [Spacebar] para siguiente, [Backspace] para anterior, [Enter] para ver bitacora, [Esc] para salir.");
+      StyleConsole.WriteLine("Presiona [Spacebar] para siguiente, [Backspace] para anterior, [Enter]x2 para ver bitacora, [Esc] para salir.");
 
       if (InputHelper.ReadKey(ConsoleKey.Spacebar) && currentPage < totalPages - 1)
       {

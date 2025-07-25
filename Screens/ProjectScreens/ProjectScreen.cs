@@ -29,7 +29,7 @@ class ProjectScreen
       }
 
       StyleConsole.WriteLine($"\nPágina {currentPage + 1} de {totalPages}", ConsoleColor.Cyan);
-      StyleConsole.WriteLine("Presiona [SpaceBar] para siguiente, [Backspace] para anterior, [Enter] para seleccionar Proyecto, [Esc] para salir.");
+      StyleConsole.WriteLine("Presiona [SpaceBar] para siguiente, [Backspace] para anterior, [Enter]x2 para seleccionar Proyecto, [Esc] para salir.");
 
       if (InputHelper.ReadKey(ConsoleKey.Spacebar) && currentPage < totalPages - 1)
       {
@@ -55,6 +55,20 @@ class ProjectScreen
     }
   }
 
+  private static void ShowFrase()
+  {
+    while (true)
+    {
+      Console.Clear();
+      StyleConsole.Title("FRASE TECH");
+      FraseService.MostrarFraseAleatoria();
+
+      StyleConsole.WriteLine("\nPresiona [Spacebar] para generar otra frase, [Enter]x2 para salir.");
+      if (InputHelper.ReadKey(ConsoleKey.Spacebar)) continue;
+      else if (InputHelper.ReadKey(ConsoleKey.Enter)) break;
+    }
+  }
+
   private static void Navigator(int op)
   {
     Console.Clear();
@@ -72,7 +86,7 @@ class ProjectScreen
         InputHelper.Continuar();
         break;
       case 4:
-        //FraseService.MostrarFraseAleatoria();
+        ShowFrase();
         break;
       default:
         StyleConsole.Error("Ninguna opcion es valida, intente nuevamente");
